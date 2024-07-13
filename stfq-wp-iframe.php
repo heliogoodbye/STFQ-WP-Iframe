@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 function stfq_display_iframe($atts) {
     // Define allowed domains
-    // $allowed_domains = array('example.com', 'anotherdomain.com');
+    //$allowed_domains = array('example.com', 'anotherdomain.com');
 
     // Extract attributes with default values
     $atts = shortcode_atts(
@@ -20,6 +20,7 @@ function stfq_display_iframe($atts) {
             'width' => '600',
             'height' => '400',
             'sandbox' => '',
+            'fullwidth' => 'false',
         ),
         $atts,
         'custom_iframe'
@@ -31,17 +32,24 @@ function stfq_display_iframe($atts) {
     }
 
     // Parse the URL to check the domain
-    // $parsed_url = parse_url($atts['url']);
+    //$parsed_url = parse_url($atts['url']);
     //if (!in_array($parsed_url['host'], $allowed_domains)) {
     //    return 'URL not allowed.';
     //}
 
+    // Determine the iframe style based on the fullwidth attribute
+    if ($atts['fullwidth'] === 'true') {
+        $iframe_style = 'width:100%; height:100%; position:absolute; top:0; left:0; border:0;';
+        $container_style = 'position:relative; width:100%; padding-bottom:56.25%;';
+    } else {
+        $iframe_style = 'width:' . esc_attr($atts['width']) . 'px; height:' . esc_attr($atts['height']) . 'px; border:0;';
+        $container_style = 'width:' . esc_attr($atts['width']) . 'px; height:' . esc_attr($atts['height']) . 'px;';
+    }
+
     // Return the responsive iframe
-    return '<div style="position:relative; width:100%; padding-bottom:56.25%;">
+    return '<div style="' . esc_attr($container_style) . '">
                 <iframe src="' . esc_url($atts['url']) . '" 
-                        width="' . esc_attr($atts['width']) . '" 
-                        height="' . esc_attr($atts['height']) . '" 
-                        style="position:absolute; top:0; left:0; border:0;" 
+                        style="' . esc_attr($iframe_style) . '" 
                         loading="lazy" 
                         sandbox="' . esc_attr($atts['sandbox']) . '">
                 </iframe>
