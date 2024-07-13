@@ -97,7 +97,7 @@ The plugin includes a commented whitelist of allowed domains to ensure security.
 - example.com
 - anotherdomain.com
 
-You can modify the list of allowed domains by editing the plugin code where the `$allowed_domains` array is defined; additionally, uncomment the line of code (remove the "/*" and "*/" around the line) to activate the feature:
+You can modify the list of allowed domains by editing the plugin code where the `$allowed_domains` array is defined; additionally, uncomment the line of code (remove the "//" at the front line) to activate the feature:
 
 ```php
 $allowed_domains = array('example.com', 'anotherdomain.com');
