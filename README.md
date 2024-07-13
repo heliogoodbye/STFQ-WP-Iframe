@@ -32,6 +32,7 @@ To embed an iframe, use the following shortcode in your WordPress post or page:
 - `url`: The URL of the page to be embedded in the iframe.
 - `width`: (Optional) The width of the iframe (default is 600).
 - `height`: (Optional) The height of the iframe (default is 400).
+- `fullwidth`: (Optional) Makes the iframe span the full width of the container in which it's placed (true/false).
 - `sandbox`: (Optional) Specifies the sandboxing rules for the iframe content.
 
 **Example:**
